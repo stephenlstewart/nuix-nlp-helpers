@@ -73,24 +73,23 @@ end]]></script>
 	item = $currentItem
 	nlp = currentCase.getNlpStore()
 	proximityValue = {}
-	sorted_Dictionaries = {}
-	
-	cm_Dictionary = ""
+	sorted_SkillSets = {}
+	cm_SkillSet = ""
 	cm_Name = ""
 	cm_Proximity = 0
 	node = nlp.getForItem(item, 'defaultModel')
-	dictionaries = node.getDictionaries()
-	dictionaries.each do |dictionary|
-		cm_Dictionary = dictionary.getName()
-		dictionary.getTopics.each do |topic|
-			cm_Name = topic.getName()
-			cm_Proximity = topic.getProximity
-			proximityValue[:"#{cm_Dictionary} - #{cm_Name}"] = cm_Proximity.to_f
+	skillSets = node.getSkillSets()
+	skillSets.each do |skillset|
+		cm_SkillSet = skillset.getName()
+		skillset.getSkills.each do |skill|
+			cm_Name = skill.getName()
+			cm_Proximity = skill.getProximity()
+			proximityValue[:"#{cm_SkillSet} - #{cm_Name}"] = cm_Proximity.to_f
 		end
 	end
-	sorted_Dictionaries = proximityValue.sort_by{|k,v| -v}
-	
-	sorted_Dictionaries[0][0]
+	sorted_SkillSets = proximityValue.sort_by{|k,v| -v}
+	sorted_SkillSets[0][0]
+	#sorted_SkillSets[0][1]
 rescue
 	""
 end]]></script>
@@ -103,24 +102,23 @@ end]]></script>
 	item = $currentItem
 	nlp = currentCase.getNlpStore()
 	proximityValue = {}
-	sorted_Dictionaries = {}
-	
-	cm_Dictionary = ""
+	sorted_SkillSets = {}
+	cm_SkillSet = ""
 	cm_Name = ""
 	cm_Proximity = 0
 	node = nlp.getForItem(item, 'defaultModel')
-	dictionaries = node.getDictionaries()
-	dictionaries.each do |dictionary|
-		cm_Dictionary = dictionary.getName()
-		dictionary.getTopics.each do |topic|
-			cm_Name = topic.getName()
-			cm_Proximity = topic.getProximity
-			proximityValue[:"#{cm_Dictionary} - #{cm_Name}"] = cm_Proximity.to_f
+	skillSets = node.getSkillSets()
+	skillSets.each do |skillset|
+		cm_SkillSet = skillset.getName()
+		skillset.getSkills.each do |skill|
+			cm_Name = skill.getName()
+			cm_Proximity = skill.getProximity()
+			proximityValue[:"#{cm_SkillSet} - #{cm_Name}"] = cm_Proximity.to_f
 		end
 	end
-	sorted_Dictionaries = proximityValue.sort_by{|k,v| -v}
-	
-	sorted_Dictionaries[0][1]
+	sorted_SkillSets = proximityValue.sort_by{|k,v| -v}
+	#sorted_SkillSets[0][0]
+	sorted_SkillSets[0][1]
 rescue
 	""
 end]]></script>
@@ -268,3 +266,4 @@ end]]></script>
     </metadata>
   </metadata-list>
 </metadata-profile>
+
